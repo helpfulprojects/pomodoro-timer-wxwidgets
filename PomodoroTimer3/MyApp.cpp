@@ -1,7 +1,7 @@
 #include "MyApp.h"
 bool MyApp::OnInit()
 {
-    MyFrame* frame = new MyFrame();
-    frame->Show(true);
+    MainWindow* mainWindow = new MainWindow();
+    mainWindow->Show(true);
     return true;
 }

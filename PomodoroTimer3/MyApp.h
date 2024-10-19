@@ -1,6 +1,6 @@
 #pragma once
 #include <wx/wx.h>
-#include "MyFrame.h"
+#include "MainWindow.h"
 class MyApp : public wxApp
 {
 public:

@@ -1,14 +1,12 @@
-#include "MyFrame.h"
-
-wxBEGIN_EVENT_TABLE(MyFrame,wxFrame)
-    EVT_BUTTON(ID_StartWork, OnStartWork)
-    EVT_BUTTON(ID_StartBreak, OnStartBreak)
-    EVT_BUTTON(ID_StopTimer, OnStopTimer)
-    EVT_TIMER(ID_TimerWidget, OnProgressTimer)
+#include "TimerPage.h"
+wxBEGIN_EVENT_TABLE(TimerPage, wxWindow)
+    EVT_BUTTON(ID_StartWork, TimerPage::OnStartWork)
+    EVT_BUTTON(ID_StartBreak, TimerPage::OnStartBreak)
+    EVT_BUTTON(ID_StopTimer, TimerPage::OnStopTimer)
+    EVT_TIMER(ID_TimerWidget, TimerPage::OnProgressTimer)
 wxEND_EVENT_TABLE()
-
-MyFrame::MyFrame()
-    : wxFrame(nullptr, wxID_ANY, "Pomodoro Timer", wxPoint(1920/2-400,1080/2-300),wxSize(800,600))
+TimerPage::TimerPage(wxWindow* parent) :
+    wxWindow(parent, wxID_ANY)
 {
     timer = new wxTimer(this, ID_TimerWidget);
 
@@ -40,7 +38,7 @@ MyFrame::MyFrame()
     notification->SetParent(this);
     notification->SetTitle("Pomodoro Timer");
 }
-void MyFrame::OnStartWork(wxCommandEvent& event)
+void TimerPage::OnStartWork(wxCommandEvent& event)
 {
     state = "Work";
     endDateTime = wxDateTime::Now();
@@ -51,12 +49,12 @@ void MyFrame::OnStartWork(wxCommandEvent& event)
     notification->Show();
 }
 
-void MyFrame::OnStartBreak(wxCommandEvent& event)
+void TimerPage::OnStartBreak(wxCommandEvent& event)
 {
     OnStartBreak();
 }
 
-void MyFrame::OnStartBreak()
+void TimerPage::OnStartBreak()
 {
     state = "Break";
     endDateTime = wxDateTime::Now();
@@ -66,11 +64,11 @@ void MyFrame::OnStartBreak()
     notification->Show();
 }
 
-void MyFrame::OnStopTimer(wxCommandEvent& event)
+void TimerPage::OnStopTimer(wxCommandEvent& event)
 {
     OnStopTimer();
 }
-void MyFrame::OnStopTimer()
+void TimerPage::OnStopTimer()
 {
     state = "Idle";
     timer->Stop();
@@ -80,7 +78,7 @@ void MyFrame::OnStopTimer()
     notification->Show();
 }
 
-void MyFrame::OnProgressTimer(wxTimerEvent& event)
+void TimerPage::OnProgressTimer(wxTimerEvent& event)
 {
     auto currentDateTime = wxDateTime::Now();
     auto difference = endDateTime.Subtract(currentDateTime);

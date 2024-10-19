@@ -131,12 +131,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="MainWindow.h" />
     <ClInclude Include="MyApp.h" />
-    <ClInclude Include="MyFrame.h" />
+    <ClInclude Include="TimerPage.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="MyApp.cpp" />
-    <ClCompile Include="MyFrame.cpp" />
+    <ClCompile Include="TimerPage.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
